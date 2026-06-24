@@ -50,6 +50,7 @@ If the PeerJS public cloud servers are down or are experiencing issues, you can 
 If the PeerJS public cloud servers are down, you can make your own server by downloading Node.js...
 
 </details>
+
 | Feature | Description |
 | :--- | :--- |
 | 🔒 **P2P Encryption** | Video streams go directly between peers, never touching a server. |
