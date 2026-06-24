@@ -72,8 +72,8 @@ Once Node.js is installed, open your **Command Prompt** (Windows) or **Terminal*
    `peerjs --port 9000 --key peerjs`
 
 ⚠️ Important Warnings & Precautions
-[!WARNING]
-Don't Close the Window: The server only runs as long as that Command Prompt or Terminal window is open. If you close it, your friends will be disconnected instantly.
+>[!WARNING]
+>Don't Close the Window: The server only runs as long as that Command Prompt or Terminal window is open. If you close it, your friends will be disconnected >instantly.
 
 [!CAUTION]
 Firewall Blocks: If your friends try to connect to your local server and it fails, your computer's firewall or antivirus might be blocking port 9000. You may need to allow Node.js through your firewall settings.
