@@ -68,6 +68,8 @@ Once Node.js is installed, open your **Command Prompt** (Windows) or **Terminal*
    ```bash
    npm install peer -g
 
+ </details>
+
 ## **TL;DR**
 
 | Feature | Description |
