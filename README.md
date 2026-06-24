@@ -18,7 +18,7 @@ This project is licensed under the **GNU Affero General Public License v3.0 (AGP
 
 1. **Personal Use:** You are absolutely allowed to download this code, modify it, and use it privately for yourself or your friends. 
 2. **Commercial Use:** You may use this code for commercial purposes, provided you abide by the copyleft rules.
-3. **The "Hosting & Modification" Rule (CRITICAL):** Under the AGPL v3.0, if you modify this code and host it on a public server or domain for others to use over a network, **YOU MUST make your modified source code 100% publicly available** under the exact same AGPL v3.0 license. You cannot secretly modify this app and run it as a closed-source service. 
+3. **The "Hosting & Modification" Rule (CRITICAL):** Under the AGPL v3.0, if you modify this code and host it on a public server or domain for others to use over a network, **YOU MUST make your modified source code 100% publicly available** under the exact same AGPL v3.0 license. You cannot secretly modify this app and run it as a closed-source service, or a paid service.
 
 > ⚠️ **Notice:** If you do not wish to make your modified source code public, you do not have permission to host a modified version of this application on a public domain.
 
@@ -37,3 +37,10 @@ This project is licensed under the **GNU Affero General Public License v3.0 (AGP
 ### ⚠️ Troubleshooting
 
 If the PeerJS public cloud servers are down or are experiencing issues, you can make your own server by downloading Node.js and then running your own private signaling backend to make it work as it would with the public cloud servers up and running.
+
+<details>
+<summary><b>🔍 Click here to see Troubleshooting Steps</b></summary>
+
+If the PeerJS public cloud servers are down, you can make your own server by downloading Node.js...
+
+</details>
