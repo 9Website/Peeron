@@ -68,10 +68,10 @@ Once Node.js is installed, open your **Command Prompt** (Windows) or **Terminal*
    ```bash
    npm install peer -g
 
-Launch the server:
+2. **Launch the server:**
 
-Bash:
-`peerjs --port 9000 --key peerjs`
+```text
+peerjs --port 9000 --key peerjs
 
 ⚠️ Important Warnings & Precautions
 [!WARNING]
