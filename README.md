@@ -47,12 +47,23 @@ This project is licensed under the **GNU Affero General Public License v3.0 (AGP
 
 If the PeerJS public cloud servers are down or are experiencing issues, you can make your own server by downloading Node.js and then running your own private signaling backend to make it work as it would with the public cloud servers up and running.
 
+<h2>
 <details>
-<summary><b>🔍 Click here to see Troubleshooting Steps</b></summary>
+<summary>🔍 Click here to see Troubleshooting Steps</summary>
 
 If the PeerJS public cloud servers are down, you can make your own server by downloading Node.js...
 
 </details>
+</h2>
+
+<h3>
+<details>
+<summary>🔍 Click here to see Troubleshooting Steps</summary>
+
+If the PeerJS public cloud servers are down, you can make your own server by downloading Node.js...
+
+</details>
+</h3>
 
 ## **TL;DR**
 
