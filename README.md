@@ -51,7 +51,7 @@ If the PeerJS public cloud servers are down, you can make your own server by dow
 
 </details>
 
-**TL;DR**
+## **TL;DR**
 
 | Feature | Description |
 | :--- | :--- |
