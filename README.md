@@ -1,4 +1,4 @@
-# <img src="https://img.shields.io/badge/GitHub-9Website-black?style=for-the-badge&logo=github" height="45">
+# <img src="https://img.shields.io/badge/GitHub-9Website-black?style=plastic&logo=github" height="45">
 > [!NOTE]
 > This app runs 100% in the browser. You don't need any servers!
 
