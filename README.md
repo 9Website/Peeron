@@ -16,7 +16,7 @@ A secure, cross-platform, peer-to-peer (P2P) video chat and collaborative worksp
 
 This software is developed, maintained, and distributed by **[9Website](https://github.com/9Website)**. 
 
-If you use, deploy, or reference this project, appropriate credit to **9Website** must be maintained in accordance with the project's licensing terms.
+This project is licensed under the GNU Affero General Public License v3.0 (AGPL-3.0).
 
 ---
 
