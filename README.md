@@ -56,6 +56,8 @@ That means:
 
 If the PeerJS public signaling servers are unavailable or unstable, you can run your own local signaling server using Node.js. This restores full functionality without relying on the public PeerJS cloud.
 
+If you run into any bugs or issues, feel free to report them in the Issues tab of this repository — it really helps us improve the project.
+
 ---
 
 ## ⏱️ TL;DR (Too Long; Didn't Read)
