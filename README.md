@@ -52,11 +52,11 @@ If the PeerJS public cloud servers are down or are experiencing issues, you can 
 ## ⏱️ TL;DR (Too Long; Didn't Read)
 
 > [!NOTE]
-> This is a **100% serverless, browser-to-browser** workspace. No accounts, no data logging, and no middleman.
+> This is a **browser-to-browser** workspace. No accounts, no data logging, and no permanent media servers holding your data.
 
 | Feature | Description |
 | :--- | :--- |
-| 🔒 **P2P Encryption** | Video streams go directly between peers using `WebRTC`, never touching an external server. |
+| 🔒 **P2P Encryption** | Video and data streams go directly between peers via `WebRTC`. Signaling/STUN servers are only used for the initial handshake—your actual media never passes through a middleman. |
 | 💬 **Live Workspace** | Real-time text chat, seamless file sharing, and a shared collaborative text editor. |
 | 🚫 **Host Controls** | Kick annoying users and issue instant hardware-based bans directly from your browser. |
 
