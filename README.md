@@ -1,69 +1,80 @@
 # <img src="https://img.shields.io/badge/GitHub-9Website-black?style=for-the-badge&logo=github" height="45">
 
 # To access this site go to: [`https://9website.github.io/Meet-And-Chat/`](https://9website.github.io/Meet-And-Chat/)
-(If this URL tries to take you to a Github page then copy the url and paste it into the search bar at the top of your screen or in a new tab).
+(If this URL tries to take you to a GitHub page, copy it and paste it directly into your browser address bar or a new tab.)
 
-TL;DR (Too Long Didn't Read) at the bottom.
+TL;DR (Too Long Didn't Read) is at the bottom.
 
 ---
+
 # P2P Video Chat & Workspace App
 
-A secure, cross-platform, peer-to-peer (P2P) video chat and collaborative workspace application. Built with WebRTC, this platform allows users to connect instantly via 6-digit alphanumeric room codes, share files, edit text in real-time, and manage rooms with advanced host controls.
+A secure, cross-platform, peer-to-peer (P2P) video chat and collaborative workspace application built with **WebRTC**.
+
+This platform lets users instantly connect using 6-digit alphanumeric room codes, communicate via video/audio, share files, chat in real time, and collaborate in a shared workspace with host-controlled moderation tools.
 
 ---
 
 ## 👤 Credits & Distribution
 
-This software is developed, maintained, and distributed by **[9Website](https://github.com/9Website)**. 
+This software is developed, maintained, and distributed by **[9Website](https://github.com/9Website)**.
 
-This project is licensed under the GNU Affero General Public License v3.0 (AGPL-3.0).
+This project is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**.
 
 ---
 
-## ⚖️ License Clarifications (GNU AGPL v3.0)
+## ⚖️ License (GNU AGPL v3.0)
 
-This project is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**. Because this is a web-based application, it is vital that you understand the strict rules regarding modification and hosting:
+This project is open-source under the **GNU Affero General Public License v3.0 (AGPL-3.0)**.
 
-1. **Personal Use:** You are absolutely allowed to download this code, modify it, and use it privately for yourself or your friends. 
-2. **Commercial Use:** You may use this code for commercial purposes, provided you abide by the copyleft rules.
-3. **The "Hosting & Modification" Rule (CRITICAL):** Under the AGPL v3.0, if you modify this code and host it on a public server or domain for others to use over a network, **IT MUST be made available under AGPL terms** under the exact same AGPL v3.0 license. You cannot secretly modify this app and run it as a closed-source service, or a paid service.
+That means:
 
-> ⚠️ **Notice:** If you do not wish to make your modified source code public, you do not have permission to host a modified version of this application on a public domain.
+1. **You are free to use it**  
+   You can download, modify, and run this project for personal or private use.
+
+2. **You are free to use it commercially**  
+   Commercial use is allowed as long as you follow the license terms.
+
+3. **If you modify and host it publicly, you must share your source code**  
+   If you run a modified version of this project over a network (for example, as a website or service), you must release the modified source code under the same AGPL-3.0 license and make it available to users.
+
+> ⚠️ **Note:** This is required by the AGPL-3.0 license. If you do not want to share your modified source code publicly, you cannot host a modified version of this project as a public service.
 
 ---
 
 ## ✨ Features
 
 * **Instant P2P Connections:** Low-latency video and audio streaming directly between peers using WebRTC.
-* **6-Digit Room Codes:** Secure, easy-to-share alphanumeric room codes for quick access.
-* **Shared Workspace:** Real-time text chat, shared document editing, and seamless file transfers.
-* **Host Controls:** Advanced room moderation tools, including peer kicking and device/hardware-based banning.
-* **Cross-Platform:** Works seamlessly across modern desktop and mobile web browsers.
+* **6-Digit Room Codes:** Simple and secure room-based connections using shareable alphanumeric codes.
+* **Shared Workspace:** Real-time chat, collaborative text editing, and fast file transfers.
+* **Host Controls:** Room moderation tools including kicking, banning, muting, and permission control.
+* **Cross-Platform:** Works smoothly on modern desktop and mobile browsers.
 
 ---
 
-### ⚠️ Troubleshooting
+## ⚠️ Troubleshooting
 
-If the PeerJS public cloud servers are down or are experiencing issues, you can make your own server by downloading Node.js and then running your own private signaling backend to make it work as it would with the public cloud servers up and running.
+If the PeerJS public signaling servers are unavailable or unstable, you can run your own local signaling server using Node.js. This restores full functionality without relying on the public PeerJS cloud.
 
 ---
 
 ## ⏱️ TL;DR (Too Long; Didn't Read)
 
 > [!NOTE]
-> This is a **browser-to-browser** workspace. No accounts, no data logging, and no permanent media servers holding your data.
+> This is a **peer-to-peer browser-based workspace**. There are no accounts, no central database, and no permanent media storage.
 
 > [!WARNING]
-> If you modify this code and host it publicly, the AGPL v3.0 license requires you to keep your code open-source and free for all. 
+> If you modify and host this project publicly, the **AGPL-3.0 license requires you to release your modified source code under the same license.**
 
 | Feature | Description |
 | :--- | :--- |
-| 🔒 **P2P Encryption** | Video and data streams go directly between peers via `WebRTC`. Signaling/STUN servers are only used for the initial handshake—your actual media never passes through a middleman. |
-| 💬 **Live Workspace** | Real-time text chat, seamless file transfers, and a rich, fully collaborative text editor built for active team workflows. |
-| 🚫 **Host Controls** | Full admin powers directly from your browser: transfer ownership, kick/ban users, change their names/emojis, mute their chat privileges, or force-stop their mic, camera, and screenshare. |
+| 🔒 **P2P Encryption** | Audio, video, and data transfer directly between peers using WebRTC. Only signaling/STUN servers are used for connection setup. |
+| 💬 **Live Workspace** | Real-time chat, file sharing, and collaborative document editing for seamless teamwork. |
+| 🚫 **Host Controls** | Full room moderation: transfer ownership, kick/ban users, mute participants, and control device permissions. |
 
 ---
 
 ---
+
 ![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)
 ![Tech: WebRTC](https://img.shields.io/badge/Tech-WebRTC-orange.svg)
