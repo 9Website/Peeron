@@ -48,11 +48,25 @@ This project is licensed under the **GNU Affero General Public License v3.0 (AGP
 If the PeerJS public cloud servers are down or are experiencing issues, you can make your own server by downloading Node.js and then running your own private signaling backend to make it work as it would with the public cloud servers up and running.
 
 <details>
-<summary><h3>🔍 Click here to see Troubleshooting Steps</h3></summary>
+<summary><h2>🛠️ Step-by-Step Self-Hosting Guide</h2></summary>
 
-If the PeerJS public cloud servers are down, you can make your own server by downloading Node.js...
+### 1. Download & Install Node.js
+You need to install Node.js so your computer can run the server commands.
 
-</details>
+| Operating System | How to Download |
+| :--- | :--- |
+| 🪟 **Windows** | Download and run the **Windows Installer (.msi)** from the official [Node.js Website](https://nodejs.org/). |
+| 🍏 **macOS** | Download and run the **macOS Installer (.pkg)** from the [Node.js Website](https://nodejs.org/). |
+| 🐧 **Linux** | Run `sudo apt install nodejs npm` in your terminal. |
+
+---
+
+### 2. How to Run the Mini-Server
+Once Node.js is installed, open your **Command Prompt** (Windows) or **Terminal** (Mac/Linux) and run these two commands:
+
+1. **Install the server tool:**
+   ```bash
+   npm install peer -g
 
 ## **TL;DR**
 
