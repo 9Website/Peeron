@@ -1,7 +1,11 @@
 # <img src="https://img.shields.io/badge/GitHub-9Website-black?style=for-the-badge&logo=github" height="45">
 
 ---
-TL;DR (Too Long Didn't Read) at the bottom.
+<small>TL;DR (Too Long Didn't Read) at the bottom.</small>
+
+<span style="font-size: 75%;">This text is 75% of normal size!</span>
+<span style="font-size: 60%;">This text is 60% of normal size!</span>
+
 # P2P Video Chat & Workspace App
 
 A secure, cross-platform, peer-to-peer (P2P) video chat and collaborative workspace application. Built with WebRTC, this platform allows users to connect instantly via 6-digit alphanumeric room codes, share files, edit text in real-time, and manage rooms with advanced host controls.
