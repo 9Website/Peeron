@@ -58,7 +58,7 @@ If the PeerJS public cloud servers are down or are experiencing issues, you can 
 | :--- | :--- |
 | 🔒 **P2P Encryption** | Video and data streams go directly between peers via `WebRTC`. Signaling/STUN servers are only used for the initial handshake—your actual media never passes through a middleman. |
 | 💬 **Live Workspace** | Real-time text chat, seamless file transfers, and a rich, fully collaborative text editor built for active team workflows. |
-| 🚫 **Host Controls** | Full admin powers directly from your browser: transfer ownership, kick/ban users, change their names/emojis, mute their chat privileges, or force-stop their mic, camera, and screenshare. |
+| 🚫 **Host Controls** | aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa |
 
 ---
 
