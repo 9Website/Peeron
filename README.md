@@ -1,9 +1,4 @@
 # <img src="https://img.shields.io/badge/GitHub-9Website-black?style=for-the-badge&logo=github" height="45">
-> [!NOTE]
-> This app runs 100% in the browser. You don't need any servers!
-
-> [!WARNING]
-> If you modify this code and host it publicly, the AGPL v3.0 license requires you to keep your code open-source.
 
 ---
 
@@ -53,6 +48,9 @@ If the PeerJS public cloud servers are down or are experiencing issues, you can 
 
 > [!NOTE]
 > This is a **browser-to-browser** workspace. No accounts, no data logging, and no permanent media servers holding your data.
+
+> [!WARNING]
+> If you modify this code and host it publicly, the AGPL v3.0 license requires you to keep your code open-source. 
 
 | Feature | Description |
 | :--- | :--- |
