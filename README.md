@@ -1,6 +1,6 @@
 # <img src="https://img.shields.io/badge/GitHub-9Website-black?style=for-the-badge&logo=github" height="45">
 
-# To access this site go to: [`9website.github.io/Meet-And-Chat/`](https://9website.github.io/Meet-And-Chat/)
+# To access this site go to: [`https://9website.github.io/Meet-And-Chat/`](https://9website.github.io/Meet-And-Chat/)
 (If this URL tries to take you to a Github page then copy the url and paste it into the search bar at the top of your screen or in a new tab).
 
 TL;DR (Too Long Didn't Read) at the bottom.
@@ -26,7 +26,7 @@ This project is licensed under the **GNU Affero General Public License v3.0 (AGP
 
 1. **Personal Use:** You are absolutely allowed to download this code, modify it, and use it privately for yourself or your friends. 
 2. **Commercial Use:** You may use this code for commercial purposes, provided you abide by the copyleft rules.
-3. **The "Hosting & Modification" Rule (CRITICAL):** Under the AGPL v3.0, if you modify this code and host it on a public server or domain for others to use over a network, **YOU MUST make your modified source code 100% publicly available** under the exact same AGPL v3.0 license. You cannot secretly modify this app and run it as a closed-source service, or a paid service.
+3. **The "Hosting & Modification" Rule (CRITICAL):** Under the AGPL v3.0, if you modify this code and host it on a public server or domain for others to use over a network, **IT MUST be made available under AGPL terms** under the exact same AGPL v3.0 license. You cannot secretly modify this app and run it as a closed-source service, or a paid service.
 
 > ⚠️ **Notice:** If you do not wish to make your modified source code public, you do not have permission to host a modified version of this application on a public domain.
 
