@@ -1,7 +1,6 @@
 # <img src="https://img.shields.io/badge/GitHub-9Website-black?style=for-the-badge&logo=github" height="45">
 
 # To access this site go to: [`https://9website.github.io/Meet-And-Chat/`](https://9website.github.io/Meet-And-Chat/)
-(If this URL tries to take you to a GitHub page, copy it and paste it directly into your browser address bar or a new tab.)
 
 TL;DR (Too Long Didn't Read) is at the bottom.
 
