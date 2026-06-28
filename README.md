@@ -2,7 +2,7 @@
 
 ![Peeron](https://img.shields.io/badge/Peeron-Connect%20%7C%20Chat%20%7C%20Share-1f6feb?style=for-the-badge&logo=webrtc&logoColor=white)
 
-<img src="https://raw.githubusercontent.com/9Website/Peeron/main/peeron.png" height="90" />
+<img src="https://raw.githubusercontent.com/9Website/Peeron/main/peeron.png" height="200" />
 
 
 
