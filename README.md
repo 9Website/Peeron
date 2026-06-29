@@ -2,7 +2,17 @@
 
 ---
 
-hi
+![Build](https://github.com/9Website/Peeron/actions/workflows/build.yml/badge.svg?style=for-the-badge)
+![Release](https://img.shields.io/github/v/release/9Website/Peeron?style=for-the-badge)
+![Commit Activity](https://img.shields.io/github/commit-activity/m/9Website/Peeron?style=for-the-badge)
+![Last Commit](https://img.shields.io/github/last-commit/9Website/Peeron?style=for-the-badge)
+![Issues](https://img.shields.io/github/issues/9Website/Peeron?style=for-the-badge)
+![Stars](https://img.shields.io/github/stars/9Website/Peeron?style=for-the-badge)
+![License](https://img.shields.io/github/license/9Website/Peeron?style=for-the-badge)
+![Code Size](https://img.shields.io/github/languages/code-size/9Website/Peeron?style=for-the-badge)
+![Top Language](https://img.shields.io/github/languages/top/9Website/Peeron?style=for-the-badge)
+![Repo Size](https://img.shields.io/github/repo-size/9Website/Peeron?style=for-the-badge)
+
 
 ---
 
