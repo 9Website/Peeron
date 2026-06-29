@@ -26,11 +26,12 @@
 
 <p align="center">
   <a href="https://github.com/9Website/Peeron">
-    <img src="https://raw.githubusercontent.com/9Website/Peeron/main/peeron.png" width="200" />
+    <img src="https://raw.githubusercontent.com/9Website/Peeron/refs/heads/main/peeron_readme_cropped.png" width="100%" />
   </a>
   <br>
   <i>Connect • Chat • Share</i>
 </p>
+
 
 # To access this site go to: [`https://9website.github.io/Peeron/`](https://9website.github.io/Peeron/)
 
