@@ -15,8 +15,6 @@
 
 ---
 
-![Build Status](https://github.com/9Website/Peeron/actions/workflows/build.yml/badge.svg)
-
 <img src="https://raw.githubusercontent.com/9Website/Peeron/main/peeron.png" width="200" />
 
 # To access this site go to: [`https://9website.github.io/Peeron/`](https://9website.github.io/Peeron/)
