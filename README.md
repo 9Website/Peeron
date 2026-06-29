@@ -2,6 +2,10 @@
 
 ---
 
+![Live](https://img.shields.io/badge/Live-Status-green?style=for-the-badge&logo=rss)
+
+---
+
 ![Build](https://github.com/9Website/Peeron/actions/workflows/build.yml/badge.svg?style=for-the-badge)
 ![Release](https://img.shields.io/github/v/release/9Website/Peeron?style=for-the-badge)
 ![Commit Activity](https://img.shields.io/github/commit-activity/m/9Website/Peeron?style=for-the-badge)
