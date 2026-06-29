@@ -9,9 +9,8 @@
 ![Issues](https://img.shields.io/github/issues/9Website/Peeron?style=for-the-badge)
 ![Stars](https://img.shields.io/github/stars/9Website/Peeron?style=for-the-badge)
 ![License](https://img.shields.io/github/license/9Website/Peeron?style=for-the-badge)
-![Code Size](https://img.shields.io/github/languages/code-size/9Website/Peeron?style=for-the-badge)
-![Top Language](https://img.shields.io/github/languages/top/9Website/Peeron?style=for-the-badge)
 ![Repo Size](https://img.shields.io/github/repo-size/9Website/Peeron?style=for-the-badge)
+
 
 
 ---
