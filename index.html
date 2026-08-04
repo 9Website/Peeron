@@ -336,9 +336,6 @@ const myDeviceHardwareToken=localStorage.getItem('p2p_device_token');
 let myUser={name:'User',emoji:'😀',isChatMuted:false,originalPeerId:''};
 let peer=null,roomCode='',isHost=false;
 let globalPrivacyBlurred=false,isRoomLocked=false,isWaitingRoomEnabled=true;
-let isPremiumRoom=false;
-const ROOM_LIMIT=5;
-const PREMIUM_HASH='a616e41bde1a4aa7960a9014e6986830b6a506fd93c01517e7e49ae5c4a990e2';
 let connections=[],participantsProfileMap={},selectedTargetPeerId=null,whisperTargetPeerId=null;
 let bannedHardwareTokens=[],tokenToNameMapping={};
 let localCamStream=null,localMicStream=null,localScreenStream=null;
@@ -432,7 +429,6 @@ function createRoom(){
     document.getElementById('apply-all-btn').style.display='inline-flex';
     document.getElementById('host-indicator').innerText=`Host: ${myUser.emoji} ${myUser.name}`;
     enterRoomUI(id);rebuildPeopleRoster();
-    showAlertBanner('Rooms are currently limited to 5 participants to help maintain the best performance and connection quality.');
   });
   peer.on('connection',setupIncomingDataConnection);peer.on('call',setupIncomingMediaCall);
 }
@@ -471,23 +467,12 @@ function applyBlurUI(b){const c=document.getElementById('header-code-txt'),btn=d
 
 function setupIncomingDataConnection(conn){
   if(isHost&&isRoomLocked){setTimeout(()=>conn.close(),500);return;}
-  if(isHost&&!isPremiumRoom){
-    const currentCount=connections.filter(c=>c.open).length+1; // +1 for host
-    if(currentCount>=ROOM_LIMIT){
-      setTimeout(()=>{
-        conn.send({type:'admin-command',command:'kick-limit'});
-        conn.close();
-      },500);
-      return;
-    }
-  }
   if(isHost&&isWaitingRoomEnabled){
     conn.on('data',data=>{
       if(data.type==='knock'){
         pendingKnockers[conn.peer]={conn,user:data.user,hwToken:data.hwToken,deviceInfo:data.deviceInfo,entryPerms:{}};
         addKnockCard(conn.peer);
       } else {
-        // Non-knock data from waiting conn - could be a mesh peer handshake, pass through
         handleData(data,conn);
       }
     });
@@ -631,8 +616,6 @@ function handleData(data,conn){
       updateAttachBtn();updateMutedLabel();break;
     case 'room-restrictions':
       roomRestrictions=data.restrictions;applyRoomRestrictionsLocally(data.restrictions,data.immediate);break;
-    case 'premium-unlock':
-      isPremiumRoom=true;break;
     case 'clear-chat':
       document.getElementById('chat-box').innerHTML='';messageReactions={};break;
     case 'fake-sys-msg':
@@ -804,38 +787,8 @@ function applyWhisperTarget(pId,name){
 }
 function triggerMuteShake(){const ta=document.getElementById('msg-input');ta.classList.remove('muted-shake');void ta.offsetWidth;ta.classList.add('muted-shake');setTimeout(()=>ta.classList.remove('muted-shake'),400);}
 
-async function checkPremiumCode(text){
-  const m=text.match(/^premium-room\.code\((.+)\)$/);
-  if(!m)return false;
-  const pw=m[1];
-  const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(pw));
-  const hash=Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
-  if(hash===PREMIUM_HASH){
-    isPremiumRoom=true;
-    broadcastToMesh({type:'premium-unlock'});
-    const notice=document.createElement('div');
-    notice.style.cssText='position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#28a745;color:#fff;padding:14px 24px;border-radius:10px;font-weight:bold;font-size:15px;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,.3);';
-    notice.innerText='Room capacity set to infinite.';
-    document.body.appendChild(notice);
-    setTimeout(()=>notice.remove(),3000);
-    return true;
-  }
-  return false;
-}
 function sendMessage(){
   const input=document.getElementById('msg-input');const text=input.value.trim();if(!text)return;
-  if(text.startsWith('premium-room.code(')){
-    checkPremiumCode(text).then(matched=>{
-      if(!matched){
-        // Wrong password - send as normal chat message, no special treatment
-        const encrypted=enc(text);
-        const mid='msg-'+Math.random().toString(36).substring(2,11)+Date.now().toString(36);
-        broadcastToMesh({type:'chat',payload:encrypted,user:myUser,msgId:mid,senderPeerId:peer.id});
-        appendMessage(text,'me',myUser,false,mid,peer.id,null);
-      }
-    });
-    input.value='';return;
-  }
   if(!isHost&&iAmEffectivelyMuted()){triggerMuteShake();showAlertBanner('🔇 You are muted and cannot send messages.');return;}
   if(text==='/clear'){
     if(!isHost){showAlertBanner('Only the host can clear the chat.');input.value='';return;}
