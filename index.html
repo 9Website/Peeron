@@ -346,6 +346,7 @@ let peerRestrictions={};
 let roomRestrictions={noMic:false,noCam:false,noShare:false,noChat:false,noFile:false,noReply:false,noReact:false};
 let messageReactions={};
 let ctxTargetMsgId=null,ctxTargetMsgEl=null;
+let processedMessageIds = new Set();
 let replyTargetMsgId=null,replyTargetSender=null,replyTargetText=null;
 
 const REACTION_EMOJIS=['👍','👎','🫰','❤️','🔥','💯','✅','❌','😂','🤣','💀','🙌','🎉','😎','😮','😱','🤯','👀','🫨','😢','😭','🙏','🥰','🫂','🤔','🙄','🙃','😬','🤦','👋','🤫','🗣️'];
@@ -596,7 +597,15 @@ function handleData(data,conn){
       for(let k in participantsProfileMap){if(participantsProfileMap[k].isHost)document.getElementById('host-indicator').innerText=`Host: ${participantsProfileMap[k].emoji} ${participantsProfileMap[k].name}`;}
       rebuildPeopleRoster();break;
     case 'chat':
-      appendMessage(dec(data.payload),'them',data.user,false,data.msgId,data.senderPeerId,data.replyTo);break;
+      if(data.msgId) {
+        if(processedMessageIds.has(data.msgId)) return;
+        processedMessageIds.add(data.msgId);
+      }
+      appendMessage(dec(data.payload),'them',data.user,false,data.msgId,data.senderPeerId,data.replyTo);
+      if(isHost) {
+        broadcastToMesh(data, data.senderPeerId);
+      }
+      break;
     case 'whisper':
       appendMessage(`[Private Whisper] ${dec(data.payload)}`,'them',data.user,true,data.msgId,data.senderPeerId,null);break;
     case 'global-msg-edit':handleRemoteEdit(data);break;
@@ -807,6 +816,7 @@ function sendMessage(){
   }
   const encrypted=enc(text);
   const mid='msg-'+Math.random().toString(36).substring(2,11)+Date.now().toString(36);
+  processedMessageIds.add(mid);
   const replyData=replyTargetMsgId?{msgId:replyTargetMsgId,sender:replyTargetSender,text:replyTargetText}:null;
   if(whisperTargetPeerId){
     const dc=connections.find(c=>c.peer===whisperTargetPeerId);
