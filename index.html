@@ -204,7 +204,7 @@ body.dark-mode .system-alert-banner{background:#3a2e00;border-color:#7a5e00;colo
       <button id="privacy-toggle-btn" class="privacy-btn" onclick="clickPrivacyToggle()">👁️ Hide</button>
     </div>
   </div>
-  <h2>Peeron v5.2</h2>
+  <h2>Peeron v5.3</h2>
   <div id="profile-screen" class="box" style="max-width:520px;margin:0 auto;">
     <h3>Create Your Profile</h3>
     <input type="text" id="username-input" placeholder="Enter Username…" style="text-align:center;font-size:15px;margin-bottom:10px;width:100%;padding:10px;border-radius:6px;">
@@ -443,7 +443,14 @@ function joinRoom(){
     clearTimeout(to);chk.close();
     roomCode=code;isHost=false;enterRoomUI(roomCode);
     document.getElementById('waiting-overlay').classList.add('visible');
-    let real=peer.connect(roomCode);setupOutgoingDataConnection(real);
+    
+    let real=peer.connect(roomCode);
+    setupOutgoingDataConnection(real);
+    
+    // --- ADDED THIS PART TO CONNECT TO ALL PEERS DIRECTLY ---
+    real.on('open', () => {
+      real.send({ type: 'get-peers', senderId: peer.id });
+    });
   });
 }
 
@@ -628,8 +635,24 @@ function handleData(data,conn){
     case 'global-identity-override':
       document.querySelectorAll('.msg').forEach(m=>{if(m.getAttribute('data-sender-peer-id')===data.targetPeerId){const s=m.querySelector('.sender-tag');if(s)s.innerText=`${data.newEmoji} ${data.newName}`;}});break;
     case 'file-chunk':handleIncomingFileChunk(data);break;
-    case 'mesh-intro':
+      case 'mesh-intro':
       data.peers.forEach(pId=>{if(pId!==peer.id){const nc=peer.connect(pId);setupOutgoingDataConnection(nc);}});break;
+      
+    // --- ADD THESE TWO NEW CASES HERE ---
+    case 'get-peers':
+      const peerIds = connections.map(c => c.peer);
+      conn.send({ type: 'peer-list', peers: peerIds });
+      break;
+
+    case 'peer-list':
+      data.peers.forEach(remoteId => {
+        if (remoteId !== peer.id && !connections.some(c => c.peer === remoteId)) {
+          const newConn = peer.connect(remoteId);
+          setupOutgoingDataConnection(newConn);
+        }
+      });
+      break;
+    // ------------------------------------
     case 'global-privacy-sync':applyBlurUI(data.blur);break;
     case 'media-disconnect':removeMediaWrapper(data.targetId);break;
     case 'admin-command':handleAdminCommand(data.command);break;
