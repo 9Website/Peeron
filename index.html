@@ -1108,6 +1108,8 @@ async function startCamera(h){
   catch{try{localCamStream=await navigator.mediaDevices.getUserMedia({video:{width:{ideal:w},height:{ideal:h}},audio:false});}catch{alert('Camera rejected.');return;}}
   btn.innerText='📷 Turn Camera Off';btn.className='btn-danger';
   addMediaWrapper(peer.id+'-cam',localCamStream,`${myUser.emoji} ${myUser.name} (You)`);
+  
+  // FIXED: Calls EVERY connected peer so everyone can see your camera
   connections.forEach(c=>{if(c.open)peer.call(c.peer,localCamStream,{metadata:{id:peer.id+'-cam',label:`${myUser.emoji} ${myUser.name}`}});});
 }
 async function toggleMicrophone(){
@@ -1115,7 +1117,13 @@ async function toggleMicrophone(){
   if(!localMicStream&&!vanishWarnAndProceed('microphone'))return;
   const btn=document.getElementById('mic-btn');
   if(localMicStream){localMicStream.getTracks().forEach(t=>t.stop());localMicStream=null;btn.innerText='🎙️ Turn Mic On';btn.className='';}
-  else{try{localMicStream=await navigator.mediaDevices.getUserMedia({audio:true});btn.innerText='🎙️ Turn Mic Off';btn.className='btn-danger';connections.forEach(c=>{if(c.open)peer.call(c.peer,localMicStream,{metadata:{id:peer.id+'-mic'}});});}catch{alert('Mic failed.');}}
+  else{try{
+    localMicStream=await navigator.mediaDevices.getUserMedia({audio:true});
+    btn.innerText='🎙️ Turn Mic Off';btn.className='btn-danger';
+    
+    // FIXED: Calls EVERY connected peer so everyone can hear your mic
+    connections.forEach(c=>{if(c.open)peer.call(c.peer,localMicStream,{metadata:{id:peer.id+'-mic'}});});
+  }catch{alert('Mic failed.');}}
 }
 async function toggleScreenShare(){
   if(!isHost&&(peerRestrictions[peer.id]||{}).noShare&&!localScreenStream){showAlertBanner('❌ Screen share disabled by host.');return;}
@@ -1126,7 +1134,10 @@ async function toggleScreenShare(){
     localScreenStream=await navigator.mediaDevices.getDisplayMedia({video:true});
     btn.innerText='🛑 Stop Sharing';btn.className='btn-danger';
     addMediaWrapper(peer.id+'-screen',localScreenStream,`${myUser.name}'s Screen`);
+    
+    // FIXED: Calls EVERY connected peer so everyone can see your shared screen
     connections.forEach(c=>{if(c.open)peer.call(c.peer,localScreenStream,{metadata:{id:peer.id+'-screen',label:`${myUser.name}'s Screen`}});});
+    
     localScreenStream.getVideoTracks()[0].onended=()=>{if(!localScreenStream)return;removeMediaWrapper(peer.id+'-screen');localScreenStream=null;btn.innerText='🖥️ Share Screen';btn.className='';broadcastToMesh({type:'media-disconnect',targetId:peer.id+'-screen'});};
   }catch(err){console.error(err);}}
 }
