@@ -468,6 +468,17 @@ function applyBlurUI(b){const c=document.getElementById('header-code-txt'),btn=d
 
 function setupIncomingDataConnection(conn){
   if(isHost&&isRoomLocked){setTimeout(()=>conn.close(),500);return;}
+  
+  // FIXED: When a new person connects, if we are already sharing media, send it to them right away!
+  conn.on('open', () => {
+    if (localCamStream && peer.id) {
+      peer.call(conn.peer, localCamStream, {metadata:{id:peer.id+'-cam', label:`${myUser.emoji} ${myUser.name}`}});
+    }
+    if (localScreenStream && peer.id) {
+      peer.call(conn.peer, localScreenStream, {metadata:{id:peer.id+'-screen', label:`${myUser.name}'s Screen`}});
+    }
+  });
+
   if(isHost&&isWaitingRoomEnabled){
     conn.on('data',data=>{
       if(data.type==='knock'){
@@ -480,7 +491,12 @@ function setupIncomingDataConnection(conn){
     conn.on('close',()=>{removeKnockCard(conn.peer);delete pendingKnockers[conn.peer];});
     return;
   }
-  setupOutgoingDataConnection(conn);
+  
+  connections.push(conn);
+  conn.on('data', data => handleData(data, conn));
+  conn.on('close', () => {
+    connections = connections.filter(c => c !== conn);
+  });
 }
 
 function addKnockCard(connId){
@@ -1109,37 +1125,66 @@ async function startCamera(h){
   btn.innerText='📷 Turn Camera Off';btn.className='btn-danger';
   addMediaWrapper(peer.id+'-cam',localCamStream,`${myUser.emoji} ${myUser.name} (You)`);
   
-  // FIXED: Calls EVERY connected peer so everyone can see your camera
-  connections.forEach(c=>{if(c.open)peer.call(c.peer,localCamStream,{metadata:{id:peer.id+'-cam',label:`${myUser.emoji} ${myUser.name}`}});});
+  // Call every single connected peer in the room
+  connections.forEach(c=>{
+    if(c.open) peer.call(c.peer, localCamStream, {metadata:{id:peer.id+'-cam', label:`${myUser.emoji} ${myUser.name}`}});
+  });
 }
 async function toggleMicrophone(){
   if(!isHost&&(peerRestrictions[peer.id]||{}).noMic&&!localMicStream){showAlertBanner('❌ Mic disabled by host.');return;}
   if(!localMicStream&&!vanishWarnAndProceed('microphone'))return;
   const btn=document.getElementById('mic-btn');
-  if(localMicStream){localMicStream.getTracks().forEach(t=>t.stop());localMicStream=null;btn.innerText='🎙️ Turn Mic On';btn.className='';}
-  else{try{
-    localMicStream=await navigator.mediaDevices.getUserMedia({audio:true});
-    btn.innerText='🎙️ Turn Mic Off';btn.className='btn-danger';
-    
-    // FIXED: Calls EVERY connected peer so everyone can hear your mic
-    connections.forEach(c=>{if(c.open)peer.call(c.peer,localMicStream,{metadata:{id:peer.id+'-mic'}});});
-  }catch{alert('Mic failed.');}}
+  if(localMicStream){
+    localMicStream.getTracks().forEach(t=>t.stop());
+    localMicStream=null;
+    btn.innerText='🎙️ Turn Mic On';
+    btn.className='';
+  } else {
+    try {
+      localMicStream=await navigator.mediaDevices.getUserMedia({audio:true});
+      btn.innerText='🎙️ Turn Mic Off';
+      btn.className='btn-danger';
+      
+      // Call every single connected peer in the room
+      connections.forEach(c=>{
+        if(c.open) peer.call(c.peer, localMicStream, {metadata:{id:peer.id+'-mic'}});
+      });
+    } catch { alert('Mic failed.'); }
+  }
 }
 async function toggleScreenShare(){
   if(!isHost&&(peerRestrictions[peer.id]||{}).noShare&&!localScreenStream){showAlertBanner('❌ Screen share disabled by host.');return;}
   if(!localScreenStream&&!vanishWarnAndProceed('screen share'))return;
   const btn=document.getElementById('share-btn');
-  if(localScreenStream){localScreenStream.getTracks().forEach(t=>t.stop());removeMediaWrapper(peer.id+'-screen');localScreenStream=null;btn.innerText='🖥️ Share Screen';btn.className='';broadcastToMesh({type:'media-disconnect',targetId:peer.id+'-screen'});}
-  else{try{
-    localScreenStream=await navigator.mediaDevices.getDisplayMedia({video:true});
-    btn.innerText='🛑 Stop Sharing';btn.className='btn-danger';
-    addMediaWrapper(peer.id+'-screen',localScreenStream,`${myUser.name}'s Screen`);
-    
-    // FIXED: Calls EVERY connected peer so everyone can see your shared screen
-    connections.forEach(c=>{if(c.open)peer.call(c.peer,localScreenStream,{metadata:{id:peer.id+'-screen',label:`${myUser.name}'s Screen`}});});
-    
-    localScreenStream.getVideoTracks()[0].onended=()=>{if(!localScreenStream)return;removeMediaWrapper(peer.id+'-screen');localScreenStream=null;btn.innerText='🖥️ Share Screen';btn.className='';broadcastToMesh({type:'media-disconnect',targetId:peer.id+'-screen'});};
-  }catch(err){console.error(err);}}
+  if(localScreenStream){
+    localScreenStream.getTracks().forEach(t=>t.stop());
+    removeMediaWrapper(peer.id+'-screen');
+    localScreenStream=null;
+    btn.innerText='🖥️ Share Screen';
+    btn.className='';
+    broadcastToMesh({type:'media-disconnect',targetId:peer.id+'-screen'});
+  } else {
+    try {
+      localScreenStream=await navigator.mediaDevices.getDisplayMedia({video:true});
+      btn.innerText='🛑 Stop Sharing';
+      btn.className='btn-danger';
+      addMediaWrapper(peer.id+'-screen',localScreenStream,`${myUser.name}'s Screen`);
+      
+      // Call every single connected peer in the room so everyone sees it instantly
+      connections.forEach(c=>{
+        if(c.open) peer.call(c.peer, localScreenStream, {metadata:{id:peer.id+'-screen', label:`${myUser.name}'s Screen`}});
+      });
+      
+      localScreenStream.getVideoTracks()[0].onended=()=>{
+        if(!localScreenStream)return;
+        removeMediaWrapper(peer.id+'-screen');
+        localScreenStream=null;
+        btn.innerText='🖥️ Share Screen';
+        btn.className='';
+        broadcastToMesh({type:'media-disconnect',targetId:peer.id+'-screen'});
+      };
+    } catch(err){console.error(err);}
+  }
 }
 function setupIncomingMediaCall(call){
   call.answer();
